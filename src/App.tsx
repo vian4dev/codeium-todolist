@@ -3,8 +3,6 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-// this component renders a todo list, with task name, completion state and uses the ID as key
-
 type Todo = {
   id: number
   name: string
@@ -14,7 +12,6 @@ type Todo = {
 function App() {
   const [todoList, setTodoList] = useState<Todo[]>([])
 
-  // this function adds the event target todo the todolist array
   const addTodo = (event: React.FormEvent) => {
     event.preventDefault()
     const target = event.target as typeof event.target & {
@@ -23,14 +20,17 @@ function App() {
 
     const name = target.todo.value
     setTodoList([...todoList, { id: todoList.length, name, completed: false }])
+    target.todo.value = ''
   }
 
+  const toggleCompleted = (id: number) => {
+    setTodoList(todoList.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+  }
   return (
     <>
       <div className="App">
         <h1>Todo List</h1>
-        {/* implement an input form tpo add a new todo
-      and a button to add the todo to the list*/}
+
         <div>
           <form onSubmit={addTodo}>
             <input type="text" name="todo" />
@@ -40,7 +40,11 @@ function App() {
       </div>
 
       {todoList.map(todo => (
-        <div key={todo.id}>{todo.name}</div>
+        <div key={todo.id}>
+          {/* this checkbox should trigger the item update on the property completed */}
+          <input type="checkbox" checked={todo.completed} onChange={() => {toggleCompleted(todo.id)} }/>
+          {todo.name}
+        </div>
 
       ))}
     </>
