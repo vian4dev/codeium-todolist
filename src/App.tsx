@@ -12,20 +12,37 @@ type Todo = {
 }
 
 function App() {
-  const [todoList, setTodoList] = useState<Todo[]>([]) 
+  const [todoList, setTodoList] = useState<Todo[]>([])
+
+  // this function adds the event target todo the todolist array
+  const addTodo = (event: React.FormEvent) => {
+    event.preventDefault()
+    const target = event.target as typeof event.target & {
+      todo: { value: string }
+    }
+
+    const name = target.todo.value
+    setTodoList([...todoList, { id: todoList.length, name, completed: false }])
+  }
 
   return (
     <>
-    <div className="App">
-      <h1>Todo List</h1>
-    </div>
-
-    {todoList.map(todo => (
-      <div key={todo.id}>
-        <input type="checkbox" checked={todo.completed} />
-        <span>{todo.name}</span>
+      <div className="App">
+        <h1>Todo List</h1>
+        {/* implement an input form tpo add a new todo
+      and a button to add the todo to the list*/}
+        <div>
+          <form onSubmit={addTodo}>
+            <input type="text" name="todo" />
+            <button>Add Todo</button>
+          </form>
+        </div>
       </div>
-    ))}
+
+      {todoList.map(todo => (
+        <div key={todo.id}>{todo.name}</div>
+
+      ))}
     </>
   )
 }
