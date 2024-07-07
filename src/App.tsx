@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 type Todo = {
@@ -12,6 +10,12 @@ type Todo = {
 function App() {
   const [todoList, setTodoList] = useState<Todo[]>([])
 
+  /**
+   * Adds a new todo item to the todo list.
+   *
+   * @param {React.FormEvent} event - The form event triggered by submitting the form.
+   * @return {void} This function does not return anything.
+   */
   const addTodo = (event: React.FormEvent) => {
     event.preventDefault()
     const target = event.target as typeof event.target & {
@@ -23,10 +27,21 @@ function App() {
     target.todo.value = ''
   }
 
+  /**
+   * Toggles the completed status of a todo item with the given id.
+   *
+   * @param {number} id - The id of the todo item.
+   * @return {void} This function does not return anything.
+   */
   const toggleCompleted = (id: number) => {
     setTodoList(todoList.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
   }
 
+  /**
+   * Deletes an item from the todo list based on the provided id.
+   *
+   * @param {number} id - The id of the item to delete
+   */
   const deleteItem = (id: number) => {
     setTodoList(todoList.filter(todo => todo.id !== id))
   }
