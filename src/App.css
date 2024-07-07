@@ -5,8 +5,6 @@
   text-align: center;
 }
 
-/* the todo list should be implented with flexbox */
-
 .App {
   max-width: 800px;
   width: 800px;
