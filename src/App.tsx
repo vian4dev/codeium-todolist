@@ -45,7 +45,7 @@ function App() {
       </div>
 
       {todos.map((todo) => (
-        <div key={todo.id} className="todo-item">
+        <div key={todo.id} className="item">
           <input type="checkbox" checked={todo.completed} onChange={() => handleToggleTodo(todo.id)} />
           <span className={todo.completed ? 'completed' : ''}>{todo.name}</span>
           <button onClick={() => handleRemoveTodo(todo.id)}>Delete</button>
