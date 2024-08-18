@@ -24,6 +24,8 @@
 # Codeium Todolist
 
 ## ✒️ Descrição
+Esta aplicação de controle de tarefas foi criada com o auxilio da IA Codeium onde o seu principal objetivo é ser uma pequena aplicação de atividades a fazer, para treinar um pouco mais sobre manipulação do estado no React. Suas principais funções são adicionar uma nova tarefa, remover uma tarefa, marcar e desmarcar a tarefa como concluída.
+
 
 ## 🚀 Tecnologias utilizadas
 <div style="display: inline_block"><br>
